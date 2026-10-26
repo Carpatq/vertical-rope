@@ -1,0 +1,15 @@
+{
+  "name": "vertical-rope",
+  "version": "2.0.0",
+  "private": true,
+  "description": "Catálogo web estático de Vertical Rope (React + Vite)",
+  "scripts": {
+    "instalar": "npm --prefix frontend install",
+    "dev": "npm --prefix frontend run dev",
+    "catalogo": "npm --prefix frontend run catalogo",
+    "build": "npm --prefix frontend run build",
+    "preview": "npm --prefix frontend run preview",
+    "api": "npm --prefix backend start",
+    "instalar:api": "npm --prefix backend install"
+  }
+}

@@ -1,0 +1,6 @@
+Coloca aquí el Excel del catálogo con este nombre exacto:
+
+    catalogo_pretecsi_con_imagenes.xlsx
+
+Es la fuente de datos del sitio: al ejecutar "npm run dev" o "npm run build"
+se convierte automáticamente en el catálogo que ve el público.

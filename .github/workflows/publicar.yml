@@ -1,0 +1,59 @@
+# Publica el sitio en GitHub Pages cada vez que subes cambios a la rama "main".
+# Requisitos: repositorio PÚBLICO (plan gratuito) y en Settings → Pages → Source: "GitHub Actions".
+name: Publicar sitio en GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  construir:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Instalar dependencias
+        working-directory: frontend
+        run: npm install
+
+      - name: Construir el sitio
+        working-directory: frontend
+        env:
+          # Carpeta donde queda publicado: /nombre-del-repo/  (se puede cambiar con la variable VITE_BASE)
+          VITE_BASE: ${{ vars.VITE_BASE || format('/{0}/', github.event.repository.name) }}
+          # Datos de contacto: se configuran en Settings → Secrets and variables → Actions → Variables
+          VITE_WHATSAPP: ${{ vars.VITE_WHATSAPP }}
+          VITE_EMAIL: ${{ vars.VITE_EMAIL }}
+          VITE_TELEFONO: ${{ vars.VITE_TELEFONO }}
+          VITE_DIRECCION: ${{ vars.VITE_DIRECCION }}
+        run: npm run build
+
+      - uses: actions/configure-pages@v5
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: frontend/dist
+
+  publicar:
+    needs: construir
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

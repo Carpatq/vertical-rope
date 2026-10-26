@@ -1,0 +1,27 @@
+{
+  "name": "vertical-rope-frontend",
+  "version": "2.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "catalogo": "node scripts/generar_catalogo.js",
+    "predev": "npm run catalogo",
+    "dev": "vite",
+    "prebuild": "npm run catalogo",
+    "build": "vite build",
+    "postbuild": "node scripts/postbuild.js",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@fontsource/league-spartan": "^5.0.0",
+    "@fontsource/nunito-sans": "^5.0.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-router-dom": "^6.26.0"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^4.3.1",
+    "exceljs": "^4.4.0",
+    "vite": "^5.4.0"
+  }
+}

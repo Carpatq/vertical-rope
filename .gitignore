@@ -1,0 +1,25 @@
+# Dependencias y compilados (se regeneran con npm install / npm run build)
+node_modules/
+dist/
+
+# Catálogo generado automáticamente desde el Excel (se crea en cada dev/build)
+frontend/public/data/catalogo.json
+
+# Secretos y configuración local: NUNCA subir
+.env
+.env.*
+!.env.example
+
+# Archivos temporales y de respaldo
+*.log
+debug/
+__pycache__/
+*.pyc
+*_respaldo.xlsx
+imagenes_con_error.csv
+avif_originales/
+
+# Sistema y editor
+.DS_Store
+Thumbs.db
+.vscode/
